@@ -5816,6 +5816,7 @@ static uint8_t OPENGL_PrepareWindowAttributes(uint32_t *flags)
 	 */
 	if (SDL_GL_LoadLibrary(NULL) < 0)
 	{
+		FNA3D_LogWarn("SDL_GL_LoadLibrary (%s) failed: %s", SDL_GetCurrentVideoDriver(), SDL_GetError());
 		return 0;
 	}
 
