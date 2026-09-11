@@ -36,6 +36,9 @@
 /* Drivers */
 
 static const FNA3D_Driver *drivers[] = {
+#if FNA3D_DRIVER_HEADLESS
+	&HeadlessDriver,
+#endif
 #if FNA3D_DRIVER_D3D11
 	&D3D11Driver,
 #endif
@@ -153,6 +156,12 @@ uint32_t FNA3D_PrepareWindowAttributes(void)
 				continue;
 			}
 		}
+		else if (SDL_strcasecmp("Headless", drivers[i]->Name) == 0)
+		{
+			// Only allow headless mode explicitly
+			continue;
+		}
+
 		if (drivers[i]->PrepareWindowAttributes(&result))
 		{
 			break;

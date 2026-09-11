@@ -825,6 +825,7 @@ typedef struct FNA3D_Driver
 	);
 } FNA3D_Driver;
 
+FNA3D_SHAREDINTERNAL FNA3D_Driver HeadlessDriver;
 FNA3D_SHAREDINTERNAL FNA3D_Driver VulkanDriver;
 FNA3D_SHAREDINTERNAL FNA3D_Driver D3D11Driver;
 FNA3D_SHAREDINTERNAL FNA3D_Driver OpenGLDriver;

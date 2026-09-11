@@ -5,6 +5,7 @@ project(FNA3D C)
 
 # Options
 option(BUILD_SHARED_LIBS "Build shared library" ON)
+option(BUILD_VULKAN "Enable Vulkan and SPIR-V shader backends" ON)
 option(TRACING_SUPPORT "Build with tracing enabled" OFF)
 option(BUILD_DXVK_NATIVE "Enable support for dxvk-native" OFF)
 
@@ -40,6 +41,7 @@ endif()
 
 # Defines
 add_definitions(
+    -DFNA3D_DRIVER_HEADLESS
 	-DFNA3D_DRIVER_VULKAN
 	-DFNA3D_DRIVER_OPENGL
 )
@@ -70,7 +72,7 @@ else()
 	)
 endif()
 
-if(EMSCRIPTEN)
+if(EMSCRIPTEN OR NOT BUILD_VULKAN)
 	remove_definitions(
 		-DFNA3D_DRIVER_VULKAN
 	)
@@ -95,6 +97,7 @@ add_library(FNA3D
 	src/FNA3D_PipelineCache.h
 	# Source Files
 	src/FNA3D.c
+	src/FNA3D_Driver_Headless.c
 	src/FNA3D_Driver_D3D11.c
 	src/FNA3D_Driver_OpenGL.c
 	src/FNA3D_Driver_Vulkan.c
@@ -108,6 +111,7 @@ add_library(mojoshader STATIC
 	MojoShader/mojoshader.c
 	MojoShader/mojoshader_effects.c
 	MojoShader/mojoshader_common.c
+	MojoShader/mojoshader_headless.c
 	MojoShader/mojoshader_d3d11.c
 	MojoShader/mojoshader_opengl.c
 	MojoShader/mojoshader_vulkan.c
