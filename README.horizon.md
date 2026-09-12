@@ -30,3 +30,7 @@ mirrors supply source objects, never prebuilt libraries.
 Archive output: `libFNA3D.a`, `libmojoshader.a`.
 Applications can use this library through [FNA](https://github.com/pixelomer/FNA).
 These builds use SDL2/OpenGL and do not enable a Vulkan renderer.
+
+The source-build helpers' recursive source-fetch controls can be run with
+`python3 tests/horizon/test_sources.py`; these tests create only temporary,
+original Git fixtures and do not require a console or game files.
