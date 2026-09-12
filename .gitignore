@@ -11,3 +11,6 @@ Release/
 .DS_Store
 xcuserdata/
 *.xcworkspace/
+# Horizon source builds
+/artifacts/
+**/__pycache__/
